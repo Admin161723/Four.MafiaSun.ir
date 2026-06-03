@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mafia Sun | اپلیکیشن مدیریت سرورهای نقش‌آفرینی</title>
+    <title>Mafia Sun | اپلیکیشن مدیریت حرفه‌ای سرور</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
 
         body {
-            background: #0c0c10;
+            background: #0c0c12;
             color: #eef2ff;
         }
 
@@ -24,7 +24,6 @@
             padding: 1rem 2rem;
         }
 
-        /* هدر */
         .header {
             display: flex;
             justify-content: space-between;
@@ -67,11 +66,6 @@
             transition: 0.2s;
         }
 
-        .btn-logout:hover {
-            background: #b91c1c;
-        }
-
-        /* تب‌ها */
         .tabs {
             display: flex;
             gap: 0.6rem;
@@ -111,17 +105,10 @@
         }
 
         @keyframes fade {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* کارت‌ها */
         .card {
             background: #14141c;
             border-radius: 1.8rem;
@@ -156,9 +143,16 @@
             cursor: pointer;
         }
 
-        input,
-        textarea,
-        select {
+        .btn-danger {
+            background: #b91c1c;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        input, textarea, select {
             width: 100%;
             padding: 0.75rem;
             margin: 0.5rem 0;
@@ -169,16 +163,6 @@
             outline: none;
         }
 
-        input:focus,
-        textarea:focus {
-            border-color: #3b82f6;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        /* لیست درخواست‌ها */
         .topic-list {
             margin-top: 2rem;
             border-top: 2px dashed #3a3a48;
@@ -219,7 +203,6 @@
             margin-top: 8px;
         }
 
-        /* آمار */
         .stats-row {
             display: flex;
             gap: 1rem;
@@ -236,32 +219,11 @@
         }
 
         /* قوانین رنگی */
-        .rule-orange {
-            color: #ffb347;
-            border-right: 3px solid #ff9f2e;
-            padding-right: 12px;
-            margin: 12px 0;
-        }
+        .rule-orange { color: #ffb347; border-right: 3px solid #ff9f2e; padding-right: 12px; margin: 12px 0; }
+        .rule-blue { color: #5dade2; border-right: 3px solid #2e86c1; padding-right: 12px; }
+        .rule-black { color: #bbb; border-right: 3px solid #777; padding-right: 12px; }
+        .rule-red { color: #e74c3c; border-right: 3px solid #c0392b; padding-right: 12px; }
 
-        .rule-blue {
-            color: #5dade2;
-            border-right: 3px solid #2e86c1;
-            padding-right: 12px;
-        }
-
-        .rule-black {
-            color: #bbb;
-            border-right: 3px solid #777;
-            padding-right: 12px;
-        }
-
-        .rule-red {
-            color: #e74c3c;
-            border-right: 3px solid #c0392b;
-            padding-right: 12px;
-        }
-
-        /* فرم ورود/ثبت‌نام جداگانه */
         .auth-grid {
             display: flex;
             gap: 2rem;
@@ -276,22 +238,10 @@
             border: 1px solid #2c2c3a;
         }
 
-        .auth-box h3 {
-            margin-bottom: 1rem;
-            color: #90e0ef;
-        }
-
         .flex-between {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .role-badge {
-            background: #2b2b36;
-            border-radius: 20px;
-            padding: 2px 10px;
-            font-size: 0.7rem;
         }
 
         .blue-name {
@@ -300,13 +250,8 @@
         }
 
         @media (max-width: 750px) {
-            .app-container {
-                padding: 1rem;
-            }
-
-            .auth-grid {
-                flex-direction: column;
-            }
+            .app-container { padding: 1rem; }
+            .auth-grid { flex-direction: column; }
         }
     </style>
 </head>
@@ -330,7 +275,7 @@
         <button class="tab-btn" data-tab="account"><i class="fas fa-user-plus"></i> حساب کاربری</button>
     </div>
 
-    <!-- صفحه خانه -->
+    <!-- خانه -->
     <div id="homePane" class="tab-pane active-pane">
         <div class="card">
             <h2><i class="fab fa-fort-awesome"></i> معرفی بازی Mafia Sun</h2>
@@ -346,13 +291,12 @@
                     <li>⚡ احترام متقابل و رعایت سلسله مراتب</li>
                     <li>⚡ ممنوعیت هرگونه تقلب و باگ‌کشی</li>
                     <li>⚡ همکاری با ادمین‌ها و گزارش تخلفات</li>
-                    <li>⚡ فعالیت روزانه و کمک به رشد سرور</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- صفحه فرم‌ها (درخواست بزرگسالان و نوجوانان) -->
+    <!-- فرم‌ها -->
     <div id="formsPane" class="tab-pane">
         <div class="card">
             <div class="flex-between">
@@ -373,7 +317,7 @@
                     <input type="text" id="adult_ingame" placeholder="۴_اسم خودتان داخل بازی" required>
                     <input type="text" id="adult_rank" placeholder="۵_سطح مورد نظر (ادمین، ناظر، لیدر...)" required>
                     <div class="form-group">
-                        <label>📸 ۶_عکس شناسنامه :</label>
+                        <label>📸 ۶_عکس شناسنامه (فقط مدیریت قابل مشاهده است):</label>
                         <input type="file" id="adult_idcard" accept="image/*">
                     </div>
                     <button type="submit" class="btn-primary">ارسال درخواست</button>
@@ -390,19 +334,19 @@
                     <input type="text" id="teen_ingame" placeholder="۴_اسم خودتان داخل بازی" required>
                     <input type="text" id="teen_rank" placeholder="۵_سطح مورد نظر" required>
                     <div class="form-group">
-                        <label>🆔 عکس شناسنامه :</label>
+                        <label>🆔 عکس شناسنامه (فقط مدیریت قابل مشاهده است):</label>
                         <input type="file" id="teen_idcard" accept="image/*">
                     </div>
                     <button type="submit" class="btn-primary">ارسال درخواست</button>
                 </form>
             </div>
 
-            <!-- نمایش درخواست‌های بزرگسالان -->
+            <!-- لیست درخواست‌های بزرگسالان -->
             <div class="topic-list">
                 <h3><i class="fas fa-crown"></i> درخواست‌های سرور بزرگسالان</h3>
                 <div id="adultTopicsContainer">در حال بارگذاری...</div>
             </div>
-            <!-- نمایش درخواست‌های نوجوانان -->
+            <!-- لیست درخواست‌های نوجوانان -->
             <div class="topic-list">
                 <h3><i class="fas fa-seedling"></i> درخواست‌های سرور نوجوانان</h3>
                 <div id="teenTopicsContainer">در حال بارگذاری...</div>
@@ -410,33 +354,30 @@
         </div>
     </div>
 
-    <!-- صفحه قوانین -->
+    <!-- قوانین -->
     <div id="rulesPane" class="tab-pane">
         <div class="card">
             <h2><i class="fas fa-gavel"></i> قوانین جامع سرورهای مافیا سان</h2>
-            <div class="rule-orange">🔸 ادمین ارشد بزرگسالان: حداقل سن ۲۵ سال، موظف به آنلاین بودن روزانه، هرگونه بی‌احترامی = برکناری فوری.</div>
-            <div class="rule-blue">🔹 ادمین ارشد نوجوانان: حداقل سن ۱۸ سال، نظارت دقیق و پاسخگویی به گزارشات.</div>
-            <div class="rule-black">⚫ ادمین سرور بزرگسالان (سن ۲۳+) : روزانه ۲ جم و ۱۰۰ سکه + هدیه دو ماهانه. ممنوعیت خودنمایی و بن بی‌دلیل → برخورد انضباطی.</div>
-            <div class="rule-red">🔴 ادمین سرور نوجوانان (سن ۱۷+) : تابع تمام قوانین بزرگسالان، با نظارت ارشد سرور.</div>
-            <div class="rule-orange">🔸 ناظرها: بزرگسالان (۲۰ سال به بالا) ، نوجوانان (۱۶ سال) — عدم تهدید و خودداری از خودنمایی.</div>
-            <div class="rule-blue">🔹 لیدرها (کاربر ویژه): حداقل سن ۱۳ سال (برای زیر ۱۸ نظارت ویژه) + داشتن ۱۰ پلیر تایید شده توسط ادمین ارشد.</div>
-            <div class="rule-black">⚠️ هرگونه تخلف از قوانین منجر به اخطار، کاهش امتیاز یا عزل سمت می‌گردد.</div>
+            <div class="rule-orange">🔸 ادمین ارشد بزرگسالان: حداقل سن ۲۵ سال، آنلاین روزانه، بی‌احترامی = برکناری.</div>
+            <div class="rule-blue">🔹 ادمین ارشد نوجوانان: حداقل سن ۱۸ سال، نظارت دقیق.</div>
+            <div class="rule-black">⚫ ادمین سرور بزرگسالان (سن ۲۳+) : روزانه ۲ جم و ۱۰۰ سکه + هدیه دوماهه. ممنوعیت خودنمایی و بن بی‌دلیل.</div>
+            <div class="rule-red">🔴 ادمین سرور نوجوانان (سن ۱۷+) : تابع قوانین بزرگسالان.</div>
+            <div class="rule-orange">🔸 ناظرها: بزرگسالان (۲۰ سال+) ، نوجوانان (۱۶ سال+) — بدون تهدید.</div>
+            <div class="rule-blue">🔹 لیدرها (کاربر ویژه): حداقل سن ۱۳ سال + ۱۰ پلیر تایید شده توسط ادمین ارشد.</div>
         </div>
     </div>
 
-    <!-- صفحه حساب کاربری (ورود و ثبت‌نام جدا) -->
+    <!-- حساب کاربری (ورود/ثبت‌نام جدا) -->
     <div id="accountPane" class="tab-pane">
         <div class="card">
             <h3><i class="fas fa-id-card"></i> ورود | ثبت‌نام</h3>
             <div class="auth-grid">
-                <!-- باکس ورود -->
                 <div class="auth-box">
                     <h3><i class="fas fa-sign-in-alt"></i> ورود به حساب</h3>
-                    <input type="tel" id="login_phone" placeholder="شماره موبایل" autocomplete="off">
+                    <input type="tel" id="login_phone" placeholder="شماره موبایل">
                     <input type="password" id="login_password" placeholder="رمز عبور">
                     <button id="loginBtn" class="btn-primary" style="width:100%">ورود</button>
                 </div>
-                <!-- باکس ثبت‌نام -->
                 <div class="auth-box">
                     <h3><i class="fas fa-user-plus"></i> ثبت‌نام جدید</h3>
                     <input type="text" id="register_name" placeholder="نام داخل بازی">
@@ -449,14 +390,14 @@
                 <h4>👤 پروفایل شما</h4>
                 <p><strong>نام:</strong> <span id="profile_name"></span></p>
                 <p><strong>شماره:</strong> <span id="profile_phone"></span></p>
-                <p><strong>نقش:</strong> <span id="profile_role"></span> <span id="roleColorHint"></span></p>
+                <p><strong>نقش:</strong> <span id="profile_role"></span></p>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // ========== JSONBin تنظیمات سرور ==========
+    // ---------- JSONBin ----------
     const BIN_ID = '699b724bd0ea881f40cffd2b';
     const API_KEY = '$2a$10$qPwk0hV/EF9NNUgt39C07uORCrJEc46Kqp8WDxoVRmsCRGAP7TvjW';
     const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
@@ -469,7 +410,14 @@
         downloadCount: 0
     };
 
-    // بارگذاری از سرور
+    // Helper: بررسی ادمین بودن (دسترسی کامل پنل)
+    function isAdmin() {
+        if (!currentUser) return false;
+        const adminRoles = ['admin_senior_adult', 'admin_senior_teen', 'admin_support', 'admin_adult', 'admin_teen'];
+        return adminRoles.includes(currentUser.role);
+    }
+
+    // بارگذاری داده‌ها
     async function loadData() {
         try {
             const res = await fetch(BASE_URL, { headers: { 'X-Master-Key': API_KEY } });
@@ -480,32 +428,14 @@
             if (!appData.topics_teen) appData.topics_teen = [];
             if (appData.downloadCount === undefined) appData.downloadCount = 0;
 
-            // اضافه کردن دو ادمین ویژه با نام‌های آبی
-            const hasAdmin1 = appData.users.some(u => u.phone === "09904844031");
-            if (!hasAdmin1) {
-                appData.users.push({
-                    id: 1,
-                    phone: "09904844031",
-                    password: "Admin16172-matin-1000",
-                    name: "AMOMITI",
-                    role: "admin_senior_adult",
-                    color: "blue"
-                });
-            }
-            const hasAdmin2 = appData.users.some(u => u.phone === "09904845012");
-            if (!hasAdmin2) {
-                appData.users.push({
-                    id: 2,
-                    phone: "09904845012",
-                    password: "Admin16172-matin-1000",
-                    name: "پشتیبانی",
-                    role: "admin_support",
-                    color: "blue"
-                });
-            }
-            await saveData(); // ذخیره تغییرات اولیه
+            // افزودن ادمین‌های پیش‌فرض
+            const admin1 = appData.users.find(u => u.phone === "09904844031");
+            if (!admin1) appData.users.push({ id: 1, phone: "09904844031", password: "Admin16172-matin-1000", name: "AMOMITI", role: "admin_senior_adult" });
+            const admin2 = appData.users.find(u => u.phone === "09904845012");
+            if (!admin2) appData.users.push({ id: 2, phone: "09904845012", password: "Admin16172-matin-1000", name: "پشتیبانی", role: "admin_support" });
+            await saveData();
             updateStatsUI();
-        } catch (e) { console.error(e); }
+        } catch(e) { console.error(e); }
     }
 
     async function saveData() {
@@ -521,7 +451,7 @@
         document.getElementById('activePlayersCount').innerText = appData.users.length;
     }
 
-    // رندر درخواست‌ها (با رنگ موضوع برای پنل دارها)
+    // رندر درخواست‌ها (فقط ادمین می‌تواند حذف کند، عکس فقط برای ادمین قابل مشاهده است)
     function renderTopics(type) {
         const container = document.getElementById(`${type}TopicsContainer`);
         const topics = type === 'adult' ? appData.topics_adult : appData.topics_teen;
@@ -531,37 +461,44 @@
         }
         let html = '';
         topics.forEach(topic => {
-            const isAdminUser = currentUser && (currentUser.role === 'admin_senior_adult' || currentUser.role === 'admin_senior_teen' || currentUser.role === 'admin_support' || currentUser.role === 'admin_adult' || currentUser.role === 'admin_teen');
-            const canManage = isAdminUser;
-
-            // رنگ‌آمیزی موضوع بر اساس پنل دار بودن کاربر ایجاد کننده
+            const adminAccess = isAdmin();
+            // رنگ‌آمیزی عنوان بر اساس نقش کاربر ایجادکننده (پنل دارها)
             let titleColor = "#e2e8f0";
-            if (topic.userRole && (topic.userRole.includes('admin_senior') || topic.userRole === 'admin_support')) titleColor = "#f00";    // قرمز
-            else if (topic.userRole && (topic.userRole.includes('admin_adult') || topic.userRole.includes('admin_teen'))) titleColor = "#ff0"; // زرد
-            else if (topic.userRole && topic.userRole.includes('supervisor')) titleColor = "#080";   // سبز
-            else if (topic.userName === "AMOMITI" || topic.userName === "پشتیبانی") titleColor = "#3b82f6"; // آبی
+            if (topic.userRole && (topic.userRole.includes('admin_senior') || topic.userRole === 'admin_support')) titleColor = "#f00";
+            else if (topic.userRole && (topic.userRole.includes('admin_adult') || topic.userRole.includes('admin_teen'))) titleColor = "#ff0";
+            else if (topic.userRole && topic.userRole.includes('supervisor')) titleColor = "#080";
+            else if (topic.userName === "AMOMITI" || topic.userName === "پشتیبانی") titleColor = "#3b82f6";
 
             html += `<div class="topic-item" data-id="${topic.id}" data-type="${type}">
                         <div class="topic-header">
                             <span class="topic-title" style="color:${titleColor};">👑 ${topic.userName} : ${topic.title}</span>
                             <span class="role-badge">${topic.status === 'open' ? '🟢 باز' : '🔒 بسته'}</span>
                         </div>
-                        <div><strong>نام:</strong> ${topic.fields.name} | <strong>سن:</strong> ${topic.fields.age} | <strong>موبایل:</strong> ${topic.fields.mobile} | <strong>نام بازی:</strong> ${topic.fields.ingame} | <strong>مقام درخواستی:</strong> ${topic.fields.rank}</div>
-                        ${topic.fields.idcardBase64 ? `<div><strong>🪪 شناسنامه:</strong> <a href="${topic.fields.idcardBase64}" target="_blank" style="color:#5dade2;">نمایش عکس</a></div>` : ''}
-                        <div class="response-area">
-                            <strong>💬 پاسخ‌ها :</strong>
-                            ${topic.responses.map(r => `<div class="response-text">✍️ ${r.userName}: ${r.response} (${new Date(r.date).toLocaleString()})</div>`).join('')}
-                            ${canManage ? `<textarea id="resp_${topic.id}" placeholder="پاسخ مدیریت..." rows="2"></textarea>
-                            <button class="btn-secondary" onclick="addResponse('${type}', ${topic.id})">ارسال پاسخ</button>
-                            <button class="btn-secondary" style="background:#e67e22;" onclick="toggleTopicStatus('${type}', ${topic.id})">${topic.status === 'open' ? '🔒 بستن موضوع' : '🔓 باز کردن'}</button>` : ''}
-                        </div>
+                        <div><strong>نام:</strong> ${topic.fields.name} | <strong>سن:</strong> ${topic.fields.age} | <strong>موبایل:</strong> ${topic.fields.mobile} | <strong>نام بازی:</strong> ${topic.fields.ingame} | <strong>مقام درخواستی:</strong> ${topic.fields.rank}</div>`;
+            
+            // نمایش عکس فقط برای ادمین
+            if (adminAccess && topic.fields.idcardBase64) {
+                html += `<div><strong>🪪 عکس شناسنامه (فقط مدیریت):</strong> <a href="${topic.fields.idcardBase64}" target="_blank" style="color:#5dade2;">مشاهده عکس</a></div>`;
+            } else if (topic.fields.idcardBase64 && !adminAccess) {
+                html += `<div><strong>🔒 عکس شناسنامه:</strong> <span style="color:#999;">فقط برای مدیریت قابل مشاهده است</span></div>`;
+            }
+
+            // بخش پاسخ‌ها (فقط ادمین می‌تواند پاسخ جدید دهد)
+            html += `<div class="response-area">
+                        <strong>💬 پاسخ‌های مدیریت:</strong>
+                        ${topic.responses.map(r => `<div class="response-text">✍️ ${r.userName}: ${r.response} (${new Date(r.date).toLocaleString()})</div>`).join('')}
+                        ${adminAccess ? `<textarea id="resp_${topic.id}" placeholder="پاسخ مدیریت (توضیحی) ..." rows="2"></textarea>
+                        <button class="btn-secondary" onclick="addResponse('${type}', ${topic.id})">ارسال پاسخ توضیحی</button>
+                        <button class="btn-danger" onclick="deleteTopic('${type}', ${topic.id})" style="margin-right: 0.5rem;">🗑 حذف فرم</button>` : ''}
                     </div>`;
+            html += `</div>`;
         });
         container.innerHTML = html;
     }
 
+    // ارسال پاسخ (فقط ادمین)
     window.addResponse = async function (type, topicId) {
-        if (!currentUser) { alert("لطفا ابتدا وارد حساب خود شوید."); return; }
+        if (!isAdmin()) { alert("فقط مدیران می‌توانند پاسخ دهند."); return; }
         const textarea = document.getElementById(`resp_${topicId}`);
         const responseText = textarea.value.trim();
         if (!responseText) return;
@@ -573,18 +510,22 @@
             renderTopics(type);
         }
     };
-    window.toggleTopicStatus = async function (type, topicId) {
-        if (!currentUser) return;
-        const topics = type === 'adult' ? appData.topics_adult : appData.topics_teen;
-        const topic = topics.find(t => t.id == topicId);
-        if (topic) {
-            topic.status = topic.status === 'open' ? 'closed' : 'open';
-            await saveData();
-            renderTopics(type);
+
+    // حذف فرم (فقط ادمین)
+    window.deleteTopic = async function (type, topicId) {
+        if (!isAdmin()) { alert("فقط مدیریت مجاز به حذف فرم است."); return; }
+        if (confirm("آیا از حذف این درخواست اطمینان دارید؟")) {
+            const topics = type === 'adult' ? appData.topics_adult : appData.topics_teen;
+            const index = topics.findIndex(t => t.id == topicId);
+            if (index !== -1) {
+                topics.splice(index, 1);
+                await saveData();
+                renderTopics(type);
+            }
         }
     };
 
-    // تابع تبدیل فایل به base64
+    // تبدیل فایل به base64
     function fileToBase64(file) {
         return new Promise((resolve) => {
             const reader = new FileReader();
@@ -593,6 +534,7 @@
         });
     }
 
+    // ارسال فرم جدید (همه کاربران وارد شده می‌توانند ارسال کنند)
     async function submitRequest(type, formDataObj, imageBase64) {
         if (!currentUser) { alert("ابتدا وارد حساب کاربری شوید!"); return false; }
         const fields = { ...formDataObj, idcardBase64: imageBase64 || '' };
@@ -611,10 +553,11 @@
         else appData.topics_teen.unshift(newTopic);
         await saveData();
         renderTopics(type);
+        alert("درخواست شما با موفقیت ثبت شد و در بخش فرم‌ها قرار گرفت.");
         return true;
     }
 
-    // رویدادهای فرم‌ها
+    // رویدادهای ارسال فرم
     document.getElementById('adultRequestForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const fileInput = document.getElementById('adult_idcard');
@@ -680,46 +623,38 @@
         document.getElementById('teenFormSection').style.display = 'block';
     };
 
-    // ========== سیستم ورود/ثبت‌نام ==========
+    // ========== ورود و ثبت‌نام ==========
     async function login(phone, password) {
         const user = appData.users.find(u => u.phone === phone && u.password === password);
         if (user) {
             currentUser = user;
             localStorage.setItem('mafiaUser', JSON.stringify({ id: user.id, phone: user.phone, name: user.name, role: user.role }));
             updateUserInterface();
-            alert(`به مافیا سان خوش آمدید ${user.name}`);
+            alert(`خوش آمدید ${user.name}`);
             renderTopics('adult');
             renderTopics('teen');
         } else {
-            alert("شماره موبایل یا رمز عبور اشتباه است.");
+            alert("شماره یا رمز اشتباه است");
         }
     }
 
     async function register(name, phone, password) {
         if (appData.users.find(u => u.phone === phone)) {
-            alert("این شماره قبلاً ثبت نام کرده است.");
+            alert("این شماره قبلاً ثبت شده است.");
             return;
         }
         if (!name || !phone || !password) {
-            alert("لطفاً تمام فیلدها را پر کنید.");
+            alert("لطفاً تمام فیلدها را پر کنید");
             return;
         }
-        const newUser = {
-            id: Date.now(),
-            phone: phone,
-            password: password,
-            name: name,
-            role: "user",
-            color: ""
-        };
+        const newUser = { id: Date.now(), phone, password, name, role: "user" };
         appData.users.push(newUser);
         await saveData();
-        alert("ثبت‌نام موفقیت آمیز! اکنون وارد شوید.");
+        alert("ثبت‌نام موفق! اکنون وارد شوید.");
     }
 
     function updateUserInterface() {
         if (currentUser) {
-            let displayName = currentUser.name;
             if (currentUser.name === "AMOMITI" || currentUser.name === "پشتیبانی") {
                 document.getElementById('userDisplayName').innerHTML = `<span class="blue-name">${currentUser.name}</span> (${currentUser.role})`;
             } else {
@@ -730,11 +665,6 @@
             document.getElementById('profile_name').innerText = currentUser.name;
             document.getElementById('profile_phone').innerText = currentUser.phone;
             document.getElementById('profile_role').innerText = currentUser.role;
-            if (currentUser.name === "AMOMITI" || currentUser.name === "پشتیبانی") {
-                document.getElementById('roleColorHint').innerHTML = '🔵 مقام ویژه آبی';
-            } else {
-                document.getElementById('roleColorHint').innerHTML = '';
-            }
         } else {
             document.getElementById('userDisplayName').innerHTML = 'میهمان';
             document.getElementById('logoutBtn').style.display = 'none';
@@ -750,7 +680,7 @@
         updateUserInterface();
         renderTopics('adult');
         renderTopics('teen');
-        alert("از حساب خارج شدید.");
+        alert("خارج شدید.");
     };
 
     function loadStoredUser() {
@@ -759,13 +689,9 @@
             try {
                 const u = JSON.parse(stored);
                 const found = appData.users.find(us => us.id === u.id);
-                if (found) {
-                    currentUser = found;
-                    updateUserInterface();
-                } else {
-                    currentUser = null;
-                }
-            } catch (e) { currentUser = null; }
+                if (found) { currentUser = found; updateUserInterface(); }
+                else currentUser = null;
+            } catch(e) { currentUser = null; }
         }
         updateUserInterface();
     }
