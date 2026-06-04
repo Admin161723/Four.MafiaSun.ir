@@ -218,7 +218,6 @@
             gap: 0.5rem;
         }
 
-        /* قوانین رنگی */
         .rule-orange { color: #ffb347; border-right: 3px solid #ff9f2e; padding-right: 12px; margin: 12px 0; }
         .rule-blue { color: #5dade2; border-right: 3px solid #2e86c1; padding-right: 12px; }
         .rule-black { color: #bbb; border-right: 3px solid #777; padding-right: 12px; }
@@ -270,7 +269,7 @@
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="home"><i class="fas fa-home"></i> خانه</button>
-        <button class="tab-btn" data-tab="forms"><i class="fas fa-file-signature"></i> فرم‌ها</button>
+        <button class="tab-btn" data-tab="forms"><i class="fas fa-file-signature"></i> فرم سرورها</button>
         <button class="tab-btn" data-tab="rules"><i class="fas fa-scroll"></i> قوانین</button>
         <button class="tab-btn" data-tab="account"><i class="fas fa-user-plus"></i> حساب کاربری</button>
     </div>
@@ -296,7 +295,7 @@
         </div>
     </div>
 
-    <!-- فرم‌ها -->
+    <!-- فرم‌ها (همه کاربران می‌توانند درخواست‌ها را ببینند) -->
     <div id="formsPane" class="tab-pane">
         <div class="card">
             <div class="flex-between">
@@ -341,12 +340,12 @@
                 </form>
             </div>
 
-            <!-- لیست درخواست‌های بزرگسالان -->
+            <!-- لیست درخواست‌های سرور بزرگسالان (برای همه قابل نمایش) -->
             <div class="topic-list">
                 <h3><i class="fas fa-crown"></i> درخواست‌های سرور بزرگسالان</h3>
                 <div id="adultTopicsContainer">در حال بارگذاری...</div>
             </div>
-            <!-- لیست درخواست‌های نوجوانان -->
+            <!-- لیست درخواست‌های سرور نوجوانان (برای همه قابل نمایش) -->
             <div class="topic-list">
                 <h3><i class="fas fa-seedling"></i> درخواست‌های سرور نوجوانان</h3>
                 <div id="teenTopicsContainer">در حال بارگذاری...</div>
@@ -410,7 +409,7 @@
         downloadCount: 0
     };
 
-    // Helper: بررسی ادمین بودن (دسترسی کامل پنل)
+    // Helper: بررسی ادمین بودن (دسترسی کامل پنل و نمایش عکس شناسنامه)
     function isAdmin() {
         if (!currentUser) return false;
         const adminRoles = ['admin_senior_adult', 'admin_senior_teen', 'admin_support', 'admin_adult', 'admin_teen'];
@@ -451,7 +450,8 @@
         document.getElementById('activePlayersCount').innerText = appData.users.length;
     }
 
-    // رندر درخواست‌ها (فقط ادمین می‌تواند حذف کند، عکس فقط برای ادمین قابل مشاهده است)
+    // رندر درخواست‌ها در بخش "فرم سرورها" - همه کاربران می‌توانند متن درخواست را ببینند
+    // اما عکس شناسنامه فقط برای ادمین‌ها نمایش داده می‌شود.
     function renderTopics(type) {
         const container = document.getElementById(`${type}TopicsContainer`);
         const topics = type === 'adult' ? appData.topics_adult : appData.topics_teen;
@@ -462,7 +462,7 @@
         let html = '';
         topics.forEach(topic => {
             const adminAccess = isAdmin();
-            // رنگ‌آمیزی عنوان بر اساس نقش کاربر ایجادکننده (پنل دارها)
+            // رنگ‌آمیزی عنوان بر اساس نقش کاربر ایجادکننده (فقط برای زیبایی)
             let titleColor = "#e2e8f0";
             if (topic.userRole && (topic.userRole.includes('admin_senior') || topic.userRole === 'admin_support')) titleColor = "#f00";
             else if (topic.userRole && (topic.userRole.includes('admin_adult') || topic.userRole.includes('admin_teen'))) titleColor = "#ff0";
@@ -474,19 +474,19 @@
                             <span class="topic-title" style="color:${titleColor};">👑 ${topic.userName} : ${topic.title}</span>
                             <span class="role-badge">${topic.status === 'open' ? '🟢 باز' : '🔒 بسته'}</span>
                         </div>
-                        <div><strong>نام:</strong> ${topic.fields.name} | <strong>سن:</strong> ${topic.fields.age} | <strong>موبایل:</strong> ${topic.fields.mobile} | <strong>نام بازی:</strong> ${topic.fields.ingame} | <strong>مقام درخواستی:</strong> ${topic.fields.rank}</div>`;
-            
-            // نمایش عکس فقط برای ادمین
+                        <div><strong>نام:</strong> ${escapeHtml(topic.fields.name)} | <strong>سن:</strong> ${escapeHtml(topic.fields.age)} | <strong>موبایل:</strong> ${escapeHtml(topic.fields.mobile)} | <strong>نام بازی:</strong> ${escapeHtml(topic.fields.ingame)} | <strong>مقام درخواستی:</strong> ${escapeHtml(topic.fields.rank)}</div>`;
+
+            // نمایش عکس شناسنامه فقط برای ادمین‌ها (پنل دارهای سایت)
             if (adminAccess && topic.fields.idcardBase64) {
                 html += `<div><strong>🪪 عکس شناسنامه (فقط مدیریت):</strong> <a href="${topic.fields.idcardBase64}" target="_blank" style="color:#5dade2;">مشاهده عکس</a></div>`;
             } else if (topic.fields.idcardBase64 && !adminAccess) {
                 html += `<div><strong>🔒 عکس شناسنامه:</strong> <span style="color:#999;">فقط برای مدیریت قابل مشاهده است</span></div>`;
             }
 
-            // بخش پاسخ‌ها (فقط ادمین می‌تواند پاسخ جدید دهد)
+            // بخش پاسخ‌های مدیریت (همه می‌توانند پاسخ‌ها را ببینند، فقط ادمین می‌تواند پاسخ جدید دهد)
             html += `<div class="response-area">
                         <strong>💬 پاسخ‌های مدیریت:</strong>
-                        ${topic.responses.map(r => `<div class="response-text">✍️ ${r.userName}: ${r.response} (${new Date(r.date).toLocaleString()})</div>`).join('')}
+                        ${topic.responses.map(r => `<div class="response-text">✍️ ${escapeHtml(r.userName)}: ${escapeHtml(r.response)} (${new Date(r.date).toLocaleString()})</div>`).join('')}
                         ${adminAccess ? `<textarea id="resp_${topic.id}" placeholder="پاسخ مدیریت (توضیحی) ..." rows="2"></textarea>
                         <button class="btn-secondary" onclick="addResponse('${type}', ${topic.id})">ارسال پاسخ توضیحی</button>
                         <button class="btn-danger" onclick="deleteTopic('${type}', ${topic.id})" style="margin-right: 0.5rem;">🗑 حذف فرم</button>` : ''}
@@ -494,6 +494,19 @@
             html += `</div>`;
         });
         container.innerHTML = html;
+    }
+
+    // تابع کمکی برای جلوگیری از XSS
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
     }
 
     // ارسال پاسخ (فقط ادمین)
@@ -553,7 +566,7 @@
         else appData.topics_teen.unshift(newTopic);
         await saveData();
         renderTopics(type);
-        alert("درخواست شما با موفقیت ثبت شد و در بخش فرم‌ها قرار گرفت.");
+        alert("درخواست شما با موفقیت ثبت شد و در بخش فرم سرورها برای همه نمایش داده می‌شود.");
         return true;
     }
 
@@ -589,12 +602,13 @@
         e.target.reset();
     });
 
-    // دانلود
+    // دانلود فایل نصبی بازی با لینک جدید (درخواست کاربر)
     document.getElementById('downloadBtn').addEventListener('click', async () => {
         appData.downloadCount = (appData.downloadCount || 0) + 1;
         await saveData();
         document.getElementById('downloadCount').innerText = appData.downloadCount;
-        window.open('https://uploadkon.ir/uploads/ac5603_26MAFIASUN.zip', '_blank');
+        // لینک دانلود جدید مطابق خواست کاربر
+        window.open('https://uploadkon.ir/uploads/7e2104_26apk-MafiaSun.rar', '_blank');
     });
 
     // تب‌ها
@@ -656,9 +670,9 @@
     function updateUserInterface() {
         if (currentUser) {
             if (currentUser.name === "AMOMITI" || currentUser.name === "پشتیبانی") {
-                document.getElementById('userDisplayName').innerHTML = `<span class="blue-name">${currentUser.name}</span> (${currentUser.role})`;
+                document.getElementById('userDisplayName').innerHTML = `<span class="blue-name">${escapeHtml(currentUser.name)}</span> (${escapeHtml(currentUser.role)})`;
             } else {
-                document.getElementById('userDisplayName').innerHTML = `${currentUser.name} (${currentUser.role})`;
+                document.getElementById('userDisplayName').innerHTML = `${escapeHtml(currentUser.name)} (${escapeHtml(currentUser.role)})`;
             }
             document.getElementById('logoutBtn').style.display = 'inline-block';
             document.getElementById('profileInfo').style.display = 'block';
